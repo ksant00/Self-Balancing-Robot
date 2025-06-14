@@ -32,8 +32,8 @@ void loop() {
     BLEDevice central = BLE.central();
 
     if (central) {
-        // Serial.print("Connected to central: ");
-        // Serial.println(central.address());
+        Serial.print("Connected to central: ");
+        Serial.println(central.address());
         digitalWrite(LED_BUILTIN, HIGH); // Turn on LED to indicate connection
 
         // Keep running while connected
@@ -59,14 +59,6 @@ void loop() {
                     app.update_movement();
                     app.autopilot = 0;
                 }
-
-                // Print the received data to the Serial Monitor
-                // Serial.print("Received data: ");
-                // Serial.println(app.movement);
-                
-                
-                // customCharacteristic.writeValue("Data received"); // Optionally, respond by updating the characteristic's value
-
             }
             
             comp_fil.update();  // update IMU reading/angle
@@ -83,74 +75,10 @@ void loop() {
                     app.update_movement();
                 }
             }
-
-            Serial.print(comp_fil.theta);
-            Serial.print("\t");
-            Serial.print(app.backwards);
-            Serial.print("\t");
-            Serial.print(app.stop);
-            Serial.print("\t");
-            Serial.print(app.stop_count);
-            Serial.print("\t");
-            Serial.print(app.movement);
-            Serial.print("\t");
-            Serial.print(app.autopilot);
-            Serial.print("\t");
-            Serial.println(pid.setpoint);
-
-            // String sendString = String(pid.setpoint);
-            // sendString.concat(" ");
-            // sendString.concat(app.stop_count);
-            // sendString.concat(" ");
-            // sendString.concat(app.stop);
-            // customCharacteristic.writeValue(sendString.c_str());
       }
 
         digitalWrite(LED_BUILTIN, LOW); // Turn off LED when disconnected
-        // Serial.println("Disconnected from central.");
+        Serial.println("Disconnected from central.");
     }
 
-
-    // Serial.print(pwm_values[1]);
-    // Serial.print("\t");
-    // Serial.print(pwm_values[0]);
-    // Serial.print("\t");
-    // Serial.print(pwm_values[3]);
-    // Serial.print("\t");
-    // Serial.print(pwm_values[2]);
-
-    // Serial.print("\t");
-    // Serial.print(pid.Kp);
-    // Serial.print("\t");
-    // Serial.print(pid.Ki);
-    // Serial.print("\t");
-    // Serial.print(pid.Kd);
-    // Serial.print("\t");
-    // Serial.print(pid.calibration_offset);
-    
-    // Serial.print("\t");
-    // Serial.print(pid.proportional);
-    // Serial.print("\t");
-    // Serial.print(pid.integral);
-    // Serial.print("\t");
-    // Serial.print(pid.derivative);
-
-    // Serial.print("\t");
-    // Serial.print(sonars.sonar1_distance);
-    // Serial.print("\t");
-    // Serial.print(sonars.sonar2_distance);
-    
-    // Serial.print("\t");
-    // Serial.print(comp_fil.dt,5);
-    // Serial.print("\t");
-    // Serial.print(pid.dt,5);
-    // Serial.print("\t");
-    // Serial.println(comp_fil.theta);
-    // Serial.print("\t");
-    // Serial.print(actual_angle);
-    // Serial.print("\t");
-    // Serial.println(pid.error);
-    // Serial.print("\t");
-    // Serial.println(pid.control_sig);
-    // Serial.println(flag);
 }
